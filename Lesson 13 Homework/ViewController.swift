@@ -7,28 +7,42 @@
 
 import UIKit
 
-protocol ViewControllerDelegate: AnyObject {
-    func printFirstName()
-    func printMiddleName()
-    func printLastName()
+//protocol ViewControllerDelegate: AnyObject {
+//    func printFirstName()
+//    func printMiddleName()
+//    func printLastName()
+//}
+
+protocol ViewDelegate: AnyObject {
+    func printText()
 }
 
-class ViewController: UIViewController, ViewControllerDelegate {
+class View: UIView {
+    weak var delegate: ViewDelegate?
+}
+
+class ViewController: UIViewController, ViewDelegate {
+    func printText() {
+    }
     
-    func printFirstName() {
-    }
-    func printMiddleName() {
-    }
-    func printLastName() {
-    }
+    
+//    func printFirstName() {
+//    }
+//    func printMiddleName() {
+//    }
+//    func printLastName() {
+//    }
     
 
-    weak var delegate: ViewControllerDelegate?
-    weak var delegate2: ViewControllerDelegate?
-    weak var delegate3: ViewControllerDelegate?
+//    weak var delegate: ViewControllerDelegate?
+//    weak var delegate2: ViewControllerDelegate?
+//    weak var delegate3: ViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let view = View()
+        view.delegate = self
         
         let label = UILabel()
         label.text = "First"
@@ -49,10 +63,10 @@ class ViewController: UIViewController, ViewControllerDelegate {
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 5.0
-        func printFirstName() {
-            self.delegate?.printFirstName()
-            print(textField.text!)
-        }
+//        func printFirstName() {
+//            self.delegate?.printFirstName()
+//            print(textField.text!)
+//        }
     
         var textField2 = UITextField()
         textField2.placeholder = "Enter Middle Name"
@@ -61,10 +75,10 @@ class ViewController: UIViewController, ViewControllerDelegate {
         textField2.layer.borderWidth = 1.0
         textField2.layer.borderColor = UIColor.gray.cgColor
         textField2.layer.cornerRadius = 5.0
-        func printMiddleName() {
-            self.delegate2?.printMiddleName()
-            print(textField2.text!)
-        }
+//        func printMiddleName() {
+//            self.delegate2?.printMiddleName()
+//            print(textField2.text!)
+//        }
         
         var textField3 = UITextField()
         textField3.placeholder = "Enter Last Name    "
@@ -73,10 +87,10 @@ class ViewController: UIViewController, ViewControllerDelegate {
         textField3.layer.borderWidth = 1.0
         textField3.layer.borderColor = UIColor.gray.cgColor
         textField3.layer.cornerRadius = 5.0
-        func printLastName() {
-            self.delegate3?.printLastName()
-            print(textField3.text!)
-        }
+//        func printLastName() {
+//            self.delegate3?.printLastName()
+//            print(textField3.text!)
+//        }
         
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
@@ -88,41 +102,41 @@ class ViewController: UIViewController, ViewControllerDelegate {
         imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         
-        let stackView = UIView()
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        let stackView = UIView()
+//        view.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
 //        stackView.layer.borderWidth = 1
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            stackView.widthAnchor.constraint(equalToConstant: 360),
-            stackView.heightAnchor.constraint(equalToConstant: 120),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -3)
+            view.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            view.widthAnchor.constraint(equalToConstant: 360),
+            view.heightAnchor.constraint(equalToConstant: 120),
+            view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -3)
         ])
-        stackView.addSubview(label)
-        label.centerXAnchor.constraint(equalTo: stackView.centerXAnchor, constant: -30).isActive = true
-        label.centerYAnchor.constraint(equalTo: stackView.centerYAnchor, constant: -45).isActive = true
+        view.addSubview(label)
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -30).isActive = true
+        label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45).isActive = true
         
-        stackView.addSubview(label2)
-        label2.centerXAnchor.constraint(equalTo: stackView.centerXAnchor, constant: -22).isActive = true
-        label2.centerYAnchor.constraint(equalTo: stackView.centerYAnchor, constant: 0).isActive = true
+        view.addSubview(label2)
+        label2.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -22).isActive = true
+        label2.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
         
-        stackView.addSubview(label3)
-        label3.centerXAnchor.constraint(equalTo: stackView.centerXAnchor, constant: -30).isActive = true
-        label3.centerYAnchor.constraint(equalTo: stackView.centerYAnchor, constant: 45).isActive = true
+        view.addSubview(label3)
+        label3.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -30).isActive = true
+        label3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45).isActive = true
         
-        stackView.addSubview(imageView)
+        view.addSubview(imageView)
         
-        stackView.addSubview(textField)
-        textField.centerXAnchor.constraint(equalTo: stackView.centerXAnchor, constant: 100).isActive = true
-        textField.centerYAnchor.constraint(equalTo: stackView.centerYAnchor, constant: -45).isActive = true
+        view.addSubview(textField)
+        textField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100).isActive = true
+        textField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45).isActive = true
         
-        stackView.addSubview(textField2)
-        textField2.centerXAnchor.constraint(equalTo: stackView.centerXAnchor, constant: 100).isActive = true
-        textField2.centerYAnchor.constraint(equalTo: stackView.centerYAnchor, constant: 0).isActive = true
+        view.addSubview(textField2)
+        textField2.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100).isActive = true
+        textField2.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
         
-        stackView.addSubview(textField3)
-        textField3.centerXAnchor.constraint(equalTo: stackView.centerXAnchor, constant: 100).isActive = true
-        textField3.centerYAnchor.constraint(equalTo: stackView.centerYAnchor, constant: 45).isActive = true
+        view.addSubview(textField3)
+        textField3.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100).isActive = true
+        textField3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45).isActive = true
         
         
         
