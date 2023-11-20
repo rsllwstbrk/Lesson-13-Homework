@@ -17,7 +17,7 @@ class View: UIView {
 }
 
 class ViewController: UIViewController, ViewDelegate {
-    func printValue() {
+    @objc func printValue() {
         self.delegate?.printValue()
     }
     
