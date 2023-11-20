@@ -7,14 +7,9 @@
 
 import UIKit
 
-//protocol ViewControllerDelegate: AnyObject {
-//    func printFirstName()
-//    func printMiddleName()
-//    func printLastName()
-//}
 
 protocol ViewDelegate: AnyObject {
-    func printText()
+    func printValue()
 }
 
 class View: UIView {
@@ -22,8 +17,13 @@ class View: UIView {
 }
 
 class ViewController: UIViewController, ViewDelegate {
-    func printText() {
+    func printValue() {
+        self.delegate?.printValue()
     }
+    
+   
+//    @objc func printValue() {
+//    }
     
     
 //    func printFirstName() {
@@ -34,15 +34,19 @@ class ViewController: UIViewController, ViewDelegate {
 //    }
     
 
-//    weak var delegate: ViewControllerDelegate?
-//    weak var delegate2: ViewControllerDelegate?
-//    weak var delegate3: ViewControllerDelegate?
+    weak var delegate: ViewDelegate?
+//    weak var delegate2: ViewDelegate?
+//    weak var delegate3: ViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let view = View()
-        view.delegate = self
+        let customView = View()
+        customView.delegate = self
+        let customView2 = View()
+        customView2.delegate = self
+        let customView3 = View()
+        customView3.delegate = self
         
         let label = UILabel()
         label.text = "First"
@@ -63,10 +67,8 @@ class ViewController: UIViewController, ViewDelegate {
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 5.0
-//        func printFirstName() {
-//            self.delegate?.printFirstName()
-//            print(textField.text!)
-//        }
+        textField.addTarget(self, action: #selector(printValue), for: .editingChanged)
+        
     
         var textField2 = UITextField()
         textField2.placeholder = "Enter Middle Name"
@@ -75,10 +77,7 @@ class ViewController: UIViewController, ViewDelegate {
         textField2.layer.borderWidth = 1.0
         textField2.layer.borderColor = UIColor.gray.cgColor
         textField2.layer.cornerRadius = 5.0
-//        func printMiddleName() {
-//            self.delegate2?.printMiddleName()
-//            print(textField2.text!)
-//        }
+        textField2.addTarget(self, action: #selector(printValue), for: .editingChanged)
         
         var textField3 = UITextField()
         textField3.placeholder = "Enter Last Name    "
@@ -87,10 +86,7 @@ class ViewController: UIViewController, ViewDelegate {
         textField3.layer.borderWidth = 1.0
         textField3.layer.borderColor = UIColor.gray.cgColor
         textField3.layer.cornerRadius = 5.0
-//        func printLastName() {
-//            self.delegate3?.printLastName()
-//            print(textField3.text!)
-//        }
+        textField3.addTarget(self, action: #selector(printValue), for: .editingChanged)
         
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
@@ -102,41 +98,38 @@ class ViewController: UIViewController, ViewDelegate {
         imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         
-//        let stackView = UIView()
-//        view.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.layer.borderWidth = 1
-        NSLayoutConstraint.activate([
-            view.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            view.widthAnchor.constraint(equalToConstant: 360),
-            view.heightAnchor.constraint(equalToConstant: 120),
-            view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -3)
-        ])
-        view.addSubview(label)
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -30).isActive = true
-        label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45).isActive = true
+        view.addSubview(customView)
+        customView.translatesAutoresizingMaskIntoConstraints = false
+        customView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        customView.widthAnchor.constraint(equalToConstant: 360).isActive = true
+        customView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        customView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -3).isActive = true
+        customView.addSubview(label)
+        label.centerXAnchor.constraint(equalTo: customView.centerXAnchor, constant: -30).isActive = true
+        label.centerYAnchor.constraint(equalTo: customView.centerYAnchor, constant: -45).isActive = true
         
-        view.addSubview(label2)
-        label2.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -22).isActive = true
-        label2.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        customView.addSubview(label2)
+        label2.centerXAnchor.constraint(equalTo: customView.centerXAnchor, constant: -22).isActive = true
+        label2.centerYAnchor.constraint(equalTo: customView.centerYAnchor, constant: 0).isActive = true
         
-        view.addSubview(label3)
-        label3.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -30).isActive = true
-        label3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45).isActive = true
+        customView.addSubview(label3)
+        label3.centerXAnchor.constraint(equalTo: customView.centerXAnchor, constant: -30).isActive = true
+        label3.centerYAnchor.constraint(equalTo: customView.centerYAnchor, constant: 45).isActive = true
         
-        view.addSubview(imageView)
+        customView.addSubview(imageView)
         
-        view.addSubview(textField)
-        textField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100).isActive = true
-        textField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45).isActive = true
+        customView.addSubview(textField)
+        textField.centerXAnchor.constraint(equalTo: customView.centerXAnchor, constant: 100).isActive = true
+        textField.centerYAnchor.constraint(equalTo: customView.centerYAnchor, constant: -45).isActive = true
         
-        view.addSubview(textField2)
-        textField2.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100).isActive = true
-        textField2.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        customView.addSubview(textField2)
+        textField2.centerXAnchor.constraint(equalTo: customView.centerXAnchor, constant: 100).isActive = true
+        textField2.centerYAnchor.constraint(equalTo: customView.centerYAnchor, constant: 0).isActive = true
         
-        view.addSubview(textField3)
-        textField3.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100).isActive = true
-        textField3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 45).isActive = true
+        customView.addSubview(textField3)
+        textField3.centerXAnchor.constraint(equalTo: customView.centerXAnchor, constant: 100).isActive = true
+        textField3.centerYAnchor.constraint(equalTo: customView.centerYAnchor, constant: 45).isActive = true
+        
         
         
         
@@ -157,18 +150,17 @@ class ViewController: UIViewController, ViewDelegate {
         label4.numberOfLines = 0
         label4.text = "Notes:"
         
-        let stackView2 = UIView()
-        view.addSubview(stackView2)
-        stackView2.translatesAutoresizingMaskIntoConstraints = false
-        stackView2.backgroundColor = .gray
-        stackView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView2.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -375).isActive = true
-        stackView2.widthAnchor.constraint(equalToConstant: 367).isActive = true
-        stackView2.heightAnchor.constraint(equalToConstant: 520).isActive = true
-        stackView2.addSubview(label4)
+        view.addSubview(customView2)
+        customView2.translatesAutoresizingMaskIntoConstraints = false
+        customView2.backgroundColor = .gray
+        customView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        customView2.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -375).isActive = true
+        customView2.widthAnchor.constraint(equalToConstant: 367).isActive = true
+        customView2.heightAnchor.constraint(equalToConstant: 520).isActive = true
+        customView2.addSubview(label4)
         label4.translatesAutoresizingMaskIntoConstraints = false
-        label4.centerYAnchor.constraint(equalTo: stackView2.topAnchor, constant: 20).isActive = true
-        label4.centerXAnchor.constraint(equalTo: stackView2.leadingAnchor, constant: 40).isActive = true
+        label4.centerYAnchor.constraint(equalTo: customView2.topAnchor, constant: 20).isActive = true
+        label4.centerXAnchor.constraint(equalTo: customView2.leadingAnchor, constant: 40).isActive = true
               
         
         
@@ -192,30 +184,21 @@ class ViewController: UIViewController, ViewDelegate {
         buttonClear.translatesAutoresizingMaskIntoConstraints = false
         buttonClear.setTitleColor(.link, for: .normal)
         
-        let stackView3 = UIStackView(arrangedSubviews: [buttonSave, buttonClear, buttonCancel])
-        view.addSubview(stackView3)
-        stackView3.translatesAutoresizingMaskIntoConstraints = false
-//        stackView3.layer.borderWidth = 1
-        stackView3.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView3.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
-        stackView3.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        stackView3.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        stackView3.alignment = .fill
-        stackView3.distribution = .fillEqually
-        stackView3.spacing = 16.0
+        view.addSubview(customView3)
+        customView3.addSubview(buttonSave)
+        customView3.addSubview(buttonClear)
+        customView3.addSubview(buttonCancel)
+        customView3.translatesAutoresizingMaskIntoConstraints = false
+        customView3.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        customView3.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        customView3.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        customView3.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        buttonSave.centerXAnchor.constraint(equalTo: customView3.centerXAnchor, constant: -125).isActive = true
         
+        buttonCancel.centerXAnchor.constraint(equalTo: customView3.centerXAnchor).isActive = true
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        buttonClear.centerXAnchor.constraint(equalTo: customView3.centerXAnchor, constant: 125).isActive = true
         
         
         
