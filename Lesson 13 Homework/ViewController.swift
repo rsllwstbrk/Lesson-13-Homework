@@ -9,19 +9,39 @@ import UIKit
 
 
 protocol ViewDelegate: AnyObject {
-    func printValue()
-    func showValue()
-    func editValue()
+    func printInfo (_ value: String, _ value2: String, _ value3: String)
 }
 
-class View: UIView, UITextFieldDelegate {
+protocol ButtonsTapDelegate: AnyObject {
+    func saveButtonTapped ()
+    func cancelButtonTapped ()
+    func clearButtonTapped ()
+}
+
+protocol TextDeletionDelegate: AnyObject {
+    func textFieldsClear ()
+}
+
+
+
+
+class TopView: UIView, UITextFieldDelegate, TextDeletionDelegate {
+    
     
     weak var delegate: ViewDelegate?
     
-    @objc func printValue() {
-        self.delegate?.printValue()
+    @objc func printInformation() {
+        self.delegate?.printInfo(textField.text!, textField2.text!, textField3.text!)
         print(textField.text!, textField2.text!, textField3.text!)
     }
+    
+    func textFieldsClear() {
+        textField.text = ""
+        textField2.text = ""
+        textField3.text = ""
+    }
+    
+    
     
     let label = UILabel()
     let label2 = UILabel()
@@ -77,7 +97,7 @@ class View: UIView, UITextFieldDelegate {
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 5.0
-        textField.addTarget(self, action: #selector(printValue), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(printInformation), for: .editingDidEnd)
         textField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 100).isActive = true
         textField.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -45).isActive = true
         
@@ -88,7 +108,7 @@ class View: UIView, UITextFieldDelegate {
         textField2.layer.borderWidth = 1.0
         textField2.layer.borderColor = UIColor.gray.cgColor
         textField2.layer.cornerRadius = 5.0
-        textField2.addTarget(self, action: #selector(printValue), for: .editingDidEnd)
+        textField2.addTarget(self, action: #selector(printInformation), for: .editingDidEnd)
         textField2.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 100).isActive = true
         textField2.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
         
@@ -99,7 +119,7 @@ class View: UIView, UITextFieldDelegate {
         textField3.layer.borderWidth = 1.0
         textField3.layer.borderColor = UIColor.gray.cgColor
         textField3.layer.cornerRadius = 5.0
-        textField3.addTarget(self, action: #selector(printValue), for: .editingDidEnd)
+        textField3.addTarget(self, action: #selector(printInformation), for: .editingDidEnd)
         textField3.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 100).isActive = true
         textField3.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 45).isActive = true
         
@@ -114,11 +134,11 @@ class View: UIView, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.delegate?.printValue()
+        self.delegate?.printInfo(textField.text ?? "", textField.text ?? "", textField.text ?? "")
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.delegate?.printValue()
+        self.delegate?.printInfo(textField.text ?? "", textField.text ?? "", textField.text ?? "")
     }
     
 }
@@ -127,27 +147,48 @@ class View: UIView, UITextFieldDelegate {
 
 
 
-class View2: UIView {
+class MiddleView: UIView, ViewDelegate, ButtonsTapDelegate {
     
-    weak var delegate2: ViewDelegate?
     
-    @objc func showValue() {
-//        self.delegate2?.showValue(notesLabel.text = textField2.text ?? "Notes:")
-//        notesLabel.text = textField.text
+    let notesTextField = UITextField()
+    let savedNotesTextField = UITextField()
+    
+    
+    func printInfo(_ value: String, _ value2: String, _ value3: String) {
+        notesTextField.text = "\(value) \(value2) \(value3)"
     }
     
-    let notesLabel = UITextField()
+    func saveButtonTapped() {
+        savedNotesTextField.text = "Saved - \(notesTextField.text ?? "")                 "
+    }
+    
+    func cancelButtonTapped() {
+        notesTextField.text = "Saving canceled"
+        savedNotesTextField.text = ""
+    }
+    
+    func clearButtonTapped() {
+        notesTextField.text = ""
+        savedNotesTextField.text = ""
+    }
+    
     
     override init(frame: CGRect) {
-        super .init(frame: frame)
+        super.init(frame: frame)
         
-        addSubview(notesLabel)
-        notesLabel.textColor = .black
-        notesLabel.placeholder = "Notes:"
-//        notesLabel.delegate =
-        notesLabel.translatesAutoresizingMaskIntoConstraints = false
-        notesLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        notesLabel.centerXAnchor.constraint(equalTo: self.leadingAnchor, constant: 40).isActive = true
+        addSubview(notesTextField)
+        notesTextField.textColor = .black
+        notesTextField.placeholder = "Notes:                            "
+        notesTextField.translatesAutoresizingMaskIntoConstraints = false
+        notesTextField.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        notesTextField.centerXAnchor.constraint(equalTo: self.leadingAnchor, constant: 100).isActive = true
+        
+        addSubview(savedNotesTextField)
+        savedNotesTextField.textColor = .black
+        savedNotesTextField.placeholder = "Saved information:                       "
+        savedNotesTextField.translatesAutoresizingMaskIntoConstraints = false
+        savedNotesTextField.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
+        savedNotesTextField.centerXAnchor.constraint(equalTo: self.leadingAnchor, constant: 136).isActive = true
     
     }
     
@@ -159,12 +200,27 @@ class View2: UIView {
 
 
 
-class View3: UIView {
-    weak var delegate3: ViewDelegate?
+class BottomView: UIView {
+    
+    weak var delegate: ButtonsTapDelegate?
+    weak var delegate2: TextDeletionDelegate?
+    
     
     let buttonSave = UIButton()
     let buttonCancel = UIButton()
     let buttonClear = UIButton()
+    
+    @objc func saveButtonTap () {
+        self.delegate?.saveButtonTapped()
+    }
+    
+    @objc func cancelButtonTap () {
+        self.delegate?.cancelButtonTapped()
+    }
+    
+    @objc func clearButtonTap () {
+        self.delegate2?.textFieldsClear()
+    }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -174,18 +230,22 @@ class View3: UIView {
         buttonSave.translatesAutoresizingMaskIntoConstraints = false
         buttonSave.setTitleColor(.link, for: .normal)
         buttonSave.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -125).isActive = true
-        
         addSubview(buttonCancel)
+        buttonSave.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
+        
         buttonCancel.setTitle("Canсel", for: .normal)
         buttonCancel.translatesAutoresizingMaskIntoConstraints = false
         buttonCancel.setTitleColor(.link, for: .normal)
         buttonCancel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
+        buttonCancel.addTarget(self, action: #selector(cancelButtonTap), for: .touchUpInside)
+
         addSubview(buttonClear)
         buttonClear.setTitle("Clear", for: .normal)
         buttonClear.translatesAutoresizingMaskIntoConstraints = false
         buttonClear.setTitleColor(.link, for: .normal)
         buttonClear.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 125).isActive = true
+        buttonClear.addTarget(self, action: #selector(clearButtonTap), for: .touchUpInside)
+
         
         
     
@@ -200,21 +260,18 @@ class View3: UIView {
 
 
 
-class ViewController: UIViewController, ViewDelegate {
-    @objc func printValue() {
-    }
-    
-    @objc func showValue() {
-    }
-    
-    @objc func editValue() {
-    }
-    
-    let customView = View()
 
-    let customView2 = View2()
 
-    let customView3 = View3()
+
+
+
+class ViewController: UIViewController {
+    
+    let customView = TopView()
+
+    let customView2 = MiddleView()
+
+    let customView3 = BottomView()
 
     
     override func viewDidLoad() {
@@ -223,7 +280,7 @@ class ViewController: UIViewController, ViewDelegate {
         
         
         view.addSubview(customView)
-        customView.delegate = self
+        customView.delegate = customView2
         customView.translatesAutoresizingMaskIntoConstraints = false
         customView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
         customView.widthAnchor.constraint(equalToConstant: 360).isActive = true
@@ -232,7 +289,6 @@ class ViewController: UIViewController, ViewDelegate {
         
         
         view.addSubview(customView2)
-        customView2.delegate2 = self
         customView2.translatesAutoresizingMaskIntoConstraints = false
         customView2.backgroundColor = .gray
         customView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -242,7 +298,8 @@ class ViewController: UIViewController, ViewDelegate {
 
         
         view.addSubview(customView3)
-        customView3.delegate3 = self
+        customView3.delegate = customView2
+        customView3.delegate2 = customView
         customView3.translatesAutoresizingMaskIntoConstraints = false
         customView3.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         customView3.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
