@@ -18,6 +18,10 @@ protocol ButtonsTapDelegate: AnyObject {
     func clearButtonTapped ()
 }
 
+protocol ForwardButtonDelegate: AnyObject {
+    func forwardButtontapped ()
+}
+
 protocol TextDeletionDelegate: AnyObject {
     func textFieldsClear ()
 }
@@ -204,11 +208,13 @@ class BottomView: UIView {
     
     weak var delegate: ButtonsTapDelegate?
     weak var delegate2: TextDeletionDelegate?
+    weak var delegate3: ForwardButtonDelegate?
     
     
     let buttonSave = UIButton()
     let buttonCancel = UIButton()
     let buttonClear = UIButton()
+    let buttonForward = UIButton()
     
     @objc func saveButtonTap () {
         self.delegate?.saveButtonTapped()
@@ -222,6 +228,10 @@ class BottomView: UIView {
         self.delegate2?.textFieldsClear()
     }
     
+    @objc func forwardButtonTap () {
+        self.delegate3?.forwardButtontapped()
+    }
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
@@ -229,22 +239,29 @@ class BottomView: UIView {
         buttonSave.setTitle("Save", for: .normal)
         buttonSave.translatesAutoresizingMaskIntoConstraints = false
         buttonSave.setTitleColor(.link, for: .normal)
-        buttonSave.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -125).isActive = true
+        buttonSave.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -160).isActive = true
         addSubview(buttonCancel)
         buttonSave.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
         
         buttonCancel.setTitle("Canсel", for: .normal)
         buttonCancel.translatesAutoresizingMaskIntoConstraints = false
         buttonCancel.setTitleColor(.link, for: .normal)
-        buttonCancel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        buttonCancel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -60).isActive = true
         buttonCancel.addTarget(self, action: #selector(cancelButtonTap), for: .touchUpInside)
 
         addSubview(buttonClear)
         buttonClear.setTitle("Clear", for: .normal)
         buttonClear.translatesAutoresizingMaskIntoConstraints = false
         buttonClear.setTitleColor(.link, for: .normal)
-        buttonClear.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 125).isActive = true
+        buttonClear.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 50).isActive = true
         buttonClear.addTarget(self, action: #selector(clearButtonTap), for: .touchUpInside)
+        
+        addSubview(buttonForward)
+        buttonForward.setTitle("Forward", for: .normal)
+        buttonForward.translatesAutoresizingMaskIntoConstraints = false
+        buttonForward.setTitleColor(.link, for: .normal)
+        buttonForward.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 150).isActive = true
+        buttonForward.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
 
         
         
@@ -258,25 +275,22 @@ class BottomView: UIView {
 }
 
 
-
-
-
-
-
-
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, ForwardButtonDelegate {
+    
+    func forwardButtontapped() {
+        navigationController?.pushViewController(Joystick_View_Controller(), animated: true)
+    }
+    
     
     let customView = TopView()
 
     let customView2 = MiddleView()
 
     let customView3 = BottomView()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         
         view.addSubview(customView)
@@ -300,6 +314,7 @@ class ViewController: UIViewController {
         view.addSubview(customView3)
         customView3.delegate = customView2
         customView3.delegate2 = customView
+        customView3.delegate3 = self
         customView3.translatesAutoresizingMaskIntoConstraints = false
         customView3.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         customView3.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
