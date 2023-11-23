@@ -57,10 +57,6 @@ class TopView: UIView, UITextFieldDelegate, TextDeletionDelegate {
     
     let label4 = UILabel()
     
-    let buttonSave = UIButton()
-    let buttonCancel = UIButton()
-    let buttonClear = UIButton()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -260,6 +256,7 @@ class BottomView: UIView {
         buttonForward.setTitle("Forward", for: .normal)
         buttonForward.translatesAutoresizingMaskIntoConstraints = false
         buttonForward.setTitleColor(.link, for: .normal)
+        buttonForward.clipsToBounds = true
         buttonForward.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 150).isActive = true
         buttonForward.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
 
@@ -318,8 +315,8 @@ class ViewController: UIViewController, ForwardButtonDelegate {
         customView3.translatesAutoresizingMaskIntoConstraints = false
         customView3.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         customView3.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
-        customView3.widthAnchor.constraint(equalToConstant: 350).isActive = true
-        customView3.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        customView3.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        customView3.heightAnchor.constraint(equalToConstant: 60).isActive = true
     
     }
     

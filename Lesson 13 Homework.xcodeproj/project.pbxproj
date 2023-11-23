@@ -14,6 +14,10 @@
 		230D75E12B04065D00CD3C89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 230D75E02B04065D00CD3C89 /* Assets.xcassets */; };
 		230D75E42B04065D00CD3C89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 230D75E22B04065D00CD3C89 /* LaunchScreen.storyboard */; };
 		238453DF2B0F94040027BC28 /* Joystick View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238453DE2B0F94040027BC28 /* Joystick View Controller.swift */; };
+		239824B52B0FEA9E006A2DC6 /* pad.webp in Resources */ = {isa = PBXBuildFile; fileRef = 239824B42B0FEA9E006A2DC6 /* pad.webp */; };
+		239824B72B0FEAAC006A2DC6 /* pad2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 239824B62B0FEAAC006A2DC6 /* pad2.jpeg */; };
+		239824B92B0FEAB2006A2DC6 /* reddot.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 239824B82B0FEAB2006A2DC6 /* reddot.jpeg */; };
+		239824BB2B0FEAB7006A2DC6 /* reddot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 239824BA2B0FEAB7006A2DC6 /* reddot2.png */; };
 		23C941E02B0A3F0600F0D0A1 /* nike.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23C941DF2B0A3F0600F0D0A1 /* nike.jpg */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,10 @@
 		230D75E52B04065D00CD3C89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		238453DE2B0F94040027BC28 /* Joystick View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Joystick View Controller.swift"; sourceTree = "<group>"; };
 		238453E12B0F986E0027BC28 /* controller.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = controller.webp; sourceTree = "<group>"; };
+		239824B42B0FEA9E006A2DC6 /* pad.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = pad.webp; sourceTree = "<group>"; };
+		239824B62B0FEAAC006A2DC6 /* pad2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pad2.jpeg; sourceTree = "<group>"; };
+		239824B82B0FEAB2006A2DC6 /* reddot.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = reddot.jpeg; sourceTree = "<group>"; };
+		239824BA2B0FEAB7006A2DC6 /* reddot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reddot2.png; sourceTree = "<group>"; };
 		23C941DF2B0A3F0600F0D0A1 /* nike.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nike.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +79,10 @@
 				230D75E52B04065D00CD3C89 /* Info.plist */,
 				23C941DF2B0A3F0600F0D0A1 /* nike.jpg */,
 				238453E12B0F986E0027BC28 /* controller.webp */,
+				239824B42B0FEA9E006A2DC6 /* pad.webp */,
+				239824B62B0FEAAC006A2DC6 /* pad2.jpeg */,
+				239824B82B0FEAB2006A2DC6 /* reddot.jpeg */,
+				239824BA2B0FEAB7006A2DC6 /* reddot2.png */,
 			);
 			path = "Lesson 13 Homework";
 			sourceTree = "<group>";
@@ -134,8 +146,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				230D75E42B04065D00CD3C89 /* LaunchScreen.storyboard in Resources */,
+				239824B52B0FEA9E006A2DC6 /* pad.webp in Resources */,
+				239824BB2B0FEAB7006A2DC6 /* reddot2.png in Resources */,
+				239824B72B0FEAAC006A2DC6 /* pad2.jpeg in Resources */,
 				230D75E12B04065D00CD3C89 /* Assets.xcassets in Resources */,
 				23C941E02B0A3F0600F0D0A1 /* nike.jpg in Resources */,
+				239824B92B0FEAB2006A2DC6 /* reddot.jpeg in Resources */,
 				230D75DF2B04065B00CD3C89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
