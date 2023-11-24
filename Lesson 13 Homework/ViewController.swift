@@ -293,16 +293,14 @@ class ViewController: UIViewController, ForwardButtonDelegate {
     
     
     func forwardButtontapped() {
-        let secondController = Joystick_View_Controller()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        let secondController = storyboard?.instantiateViewController(withIdentifier: "Joystick View Controller") as! Joystick_View_Controller
         navigationController?.pushViewController(secondController, animated: true)
+        navigationController?.isNavigationBarHidden = true
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.viewControllers: [ViewController(), Joystick_View_Controller()]
         
         
         view.addSubview(customView)
