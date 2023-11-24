@@ -916,7 +916,7 @@ class JoystickView: UIView {
     }
 }
 
-class Joystick_View_Controller: UIViewController, JoystickViewDelegate {
+class JoystickViewController: UIViewController, JoystickViewDelegate {
     func slotForChargingConnected() {}
     func slotForChargingDisconnected() {}
     

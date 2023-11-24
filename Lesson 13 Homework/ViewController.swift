@@ -291,7 +291,7 @@ class ViewController: UIViewController, ForwardButtonDelegate {
     let customView3 = BottomView()
     
     func forwardButtontapped() {
-        let secondController = Joystick_View_Controller()
+        let secondController = JoystickViewController()
         navigationController?.pushViewController(secondController, animated: true)
         navigationController?.isNavigationBarHidden = true
     }

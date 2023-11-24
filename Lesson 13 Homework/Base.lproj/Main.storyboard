@@ -27,7 +27,7 @@
         <!--Joystick View Controller-->
         <scene sceneID="dvO-6d-EmB">
             <objects>
-                <viewController storyboardIdentifier="Joystick View Controller" id="CLe-bC-09P" customClass="Joystick_View_Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Joystick View Controller" id="CLe-bC-09P" customClass="JoystickViewController" customModule="Lesson_13_Homework" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TuI-2u-OYJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
