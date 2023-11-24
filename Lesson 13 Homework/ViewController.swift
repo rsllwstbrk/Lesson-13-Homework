@@ -8,6 +8,16 @@
 import UIKit
 
 
+//class ExistingNavigationController: UINavigationController {
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        let secondViewController = Joystick_View_Controller()
+//        let existingViewController = ViewController()
+//        self.setViewControllers([existingViewController, secondViewController], animated: true)
+//    }
+//}
+
 protocol ViewDelegate: AnyObject {
     func printInfo (_ value: String, _ value2: String, _ value3: String)
 }
@@ -257,7 +267,7 @@ class BottomView: UIView {
         buttonForward.translatesAutoresizingMaskIntoConstraints = false
         buttonForward.setTitleColor(.link, for: .normal)
         buttonForward.clipsToBounds = true
-        buttonForward.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 150).isActive = true
+        buttonForward.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 120).isActive = true
         buttonForward.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
 
         
@@ -274,11 +284,6 @@ class BottomView: UIView {
 
 class ViewController: UIViewController, ForwardButtonDelegate {
     
-    func forwardButtontapped() {
-        navigationController?.pushViewController(Joystick_View_Controller(), animated: true)
-    }
-    
-    
     let customView = TopView()
 
     let customView2 = MiddleView()
@@ -286,8 +291,18 @@ class ViewController: UIViewController, ForwardButtonDelegate {
     let customView3 = BottomView()
     
     
+    
+    func forwardButtontapped() {
+        let secondController = Joystick_View_Controller()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.pushViewController(secondController, animated: true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.viewControllers: [ViewController(), Joystick_View_Controller()]
         
         
         view.addSubview(customView)
