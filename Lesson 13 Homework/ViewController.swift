@@ -267,7 +267,7 @@ class BottomView: UIView {
         buttonForward.translatesAutoresizingMaskIntoConstraints = false
         buttonForward.setTitleColor(.link, for: .normal)
         buttonForward.clipsToBounds = true
-        buttonForward.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 120).isActive = true
+        buttonForward.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 150).isActive = true
         buttonForward.addTarget(self, action: #selector(forwardButtonTap), for: .touchUpInside)
 
         
@@ -290,10 +290,8 @@ class ViewController: UIViewController, ForwardButtonDelegate {
 
     let customView3 = BottomView()
     
-    
-    
     func forwardButtontapped() {
-        let secondController = storyboard?.instantiateViewController(withIdentifier: "Joystick View Controller") as! Joystick_View_Controller
+        let secondController = Joystick_View_Controller()
         navigationController?.pushViewController(secondController, animated: true)
         navigationController?.isNavigationBarHidden = true
     }
