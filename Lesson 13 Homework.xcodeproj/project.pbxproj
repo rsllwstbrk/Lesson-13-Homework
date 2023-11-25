@@ -13,6 +13,7 @@
 		230D75DF2B04065B00CD3C89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 230D75DD2B04065B00CD3C89 /* Main.storyboard */; };
 		230D75E12B04065D00CD3C89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 230D75E02B04065D00CD3C89 /* Assets.xcassets */; };
 		230D75E42B04065D00CD3C89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 230D75E22B04065D00CD3C89 /* LaunchScreen.storyboard */; };
+		232BEA362B129D7900EBA866 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232BEA352B129D7900EBA866 /* ThirdViewController.swift */; };
 		238453DF2B0F94040027BC28 /* Joystick View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238453DE2B0F94040027BC28 /* Joystick View Controller.swift */; };
 		239824B52B0FEA9E006A2DC6 /* pad.webp in Resources */ = {isa = PBXBuildFile; fileRef = 239824B42B0FEA9E006A2DC6 /* pad.webp */; };
 		239824B72B0FEAAC006A2DC6 /* pad2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 239824B62B0FEAAC006A2DC6 /* pad2.jpeg */; };
@@ -30,6 +31,7 @@
 		230D75E02B04065D00CD3C89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		230D75E32B04065D00CD3C89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		230D75E52B04065D00CD3C89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		232BEA352B129D7900EBA866 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		238453DE2B0F94040027BC28 /* Joystick View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Joystick View Controller.swift"; sourceTree = "<group>"; };
 		238453E12B0F986E0027BC28 /* controller.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = controller.webp; sourceTree = "<group>"; };
 		239824B42B0FEA9E006A2DC6 /* pad.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = pad.webp; sourceTree = "<group>"; };
@@ -73,11 +75,12 @@
 				230D75D92B04065B00CD3C89 /* SceneDelegate.swift */,
 				230D75DB2B04065B00CD3C89 /* ViewController.swift */,
 				238453DE2B0F94040027BC28 /* Joystick View Controller.swift */,
+				232BEA352B129D7900EBA866 /* ThirdViewController.swift */,
 				230D75DD2B04065B00CD3C89 /* Main.storyboard */,
+				23C941DF2B0A3F0600F0D0A1 /* nike.jpg */,
 				230D75E02B04065D00CD3C89 /* Assets.xcassets */,
 				230D75E22B04065D00CD3C89 /* LaunchScreen.storyboard */,
 				230D75E52B04065D00CD3C89 /* Info.plist */,
-				23C941DF2B0A3F0600F0D0A1 /* nike.jpg */,
 				238453E12B0F986E0027BC28 /* controller.webp */,
 				239824B42B0FEA9E006A2DC6 /* pad.webp */,
 				239824B62B0FEAAC006A2DC6 /* pad2.jpeg */,
@@ -165,6 +168,7 @@
 			files = (
 				238453DF2B0F94040027BC28 /* Joystick View Controller.swift in Sources */,
 				230D75DC2B04065B00CD3C89 /* ViewController.swift in Sources */,
+				232BEA362B129D7900EBA866 /* ThirdViewController.swift in Sources */,
 				230D75D82B04065B00CD3C89 /* AppDelegate.swift in Sources */,
 				230D75DA2B04065B00CD3C89 /* SceneDelegate.swift in Sources */,
 			);

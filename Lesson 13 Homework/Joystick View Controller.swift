@@ -1007,12 +1007,22 @@ class JoystickViewController: UIViewController, JoystickViewDelegate {
     
 
     let customView = JoystickView()
-
+    
+    func showNavBar() {
+            self.navigationController?.isNavigationBarHidden = false}
+        
+    @objc func forward() {
+            let thirdViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "thirdViewController")
+            navigationController?.pushViewController(thirdViewController, animated: true)
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
+        
+        navigationItem.rightBarButtonItem = .init(title: "Forward", image: nil, target: self, action: #selector(forward))
+                showNavBar()
         
         view.addSubview(customView)
         customView.delegate = self
