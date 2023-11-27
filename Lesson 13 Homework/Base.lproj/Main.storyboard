@@ -103,7 +103,7 @@
                                     </subviews>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="r2A-gZ-DV9">
-                                    <rect key="frame" x="0.0" y="732" width="393" height="60"/>
+                                    <rect key="frame" x="0.0" y="768" width="393" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-Mj-klc">
@@ -133,11 +133,11 @@
                                     </subviews>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="10" indentationWidth="10" reuseIdentifier="Cell" rowHeight="503" id="XKp-jQ-xw4">
-                                        <rect key="frame" x="0.0" y="201" width="393" height="503"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="10" indentationWidth="10" reuseIdentifier="Cell" rowHeight="539" id="XKp-jQ-xw4">
+                                        <rect key="frame" x="0.0" y="201" width="393" height="539"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XKp-jQ-xw4" id="O98-hT-c2S">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="503"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="539"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eqE-BX-DDd">

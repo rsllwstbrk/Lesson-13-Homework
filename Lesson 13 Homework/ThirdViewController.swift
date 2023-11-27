@@ -23,9 +23,15 @@ class ThirdViewController: UIViewController, UITableViewDataSource, UITableViewD
         return 1
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var cellHeight: CGFloat = CGFloat()
+        cellHeight = 460
+        return cellHeight
     }
 
 }
